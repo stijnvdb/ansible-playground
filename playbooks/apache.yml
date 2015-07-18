@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: true
+  tasks:
+    - apt_repository: repo='ppa:ansible/ansible'
+
+    - name: install required packages
+      apt: name={{ item }} state=present update_cache=yes
+      with_items:
+          - git
+          - apache2
